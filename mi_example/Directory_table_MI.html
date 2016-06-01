@@ -1,0 +1,952 @@
+<HTML>
+<BODY link="blue" vlink="blue">
+
+<H1 align="center">Directory protocol:
+    <A target="Table" href="L1Cache_table.html">L1Cache</A>
+     - Directory
+     - <A target="Table" href="DMA_table.html">DMA</A>
+</H1>
+
+<TABLE border=1>
+<TR>
+  <TH> </TH>
+<TH bgcolor=white><A href="Directory_Event_GETX.html" target="Status" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_Event_GETX.html') {
+        parent.frames[1].location='Directory_Event_GETX.html'
+    }">
+    GETX
+    </A></TH>
+<TH bgcolor=white><A href="Directory_Event_GETS.html" target="Status" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_Event_GETS.html') {
+        parent.frames[1].location='Directory_Event_GETS.html'
+    }">
+    GETS
+    </A></TH>
+<TH bgcolor=white><A href="Directory_Event_PUTX.html" target="Status" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_Event_PUTX.html') {
+        parent.frames[1].location='Directory_Event_PUTX.html'
+    }">
+    PUTX
+    </A></TH>
+<TH bgcolor=white><A href="Directory_Event_PUTX_NotOwner.html" target="Status" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_Event_PUTX_NotOwner.html') {
+        parent.frames[1].location='Directory_Event_PUTX_NotOwner.html'
+    }">
+    PUTX NotOwner
+    </A></TH>
+<TH bgcolor=white><A href="Directory_Event_DMA_READ.html" target="Status" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_Event_DMA_READ.html') {
+        parent.frames[1].location='Directory_Event_DMA_READ.html'
+    }">
+    DMA READ
+    </A></TH>
+<TH bgcolor=white><A href="Directory_Event_DMA_WRITE.html" target="Status" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_Event_DMA_WRITE.html') {
+        parent.frames[1].location='Directory_Event_DMA_WRITE.html'
+    }">
+    DMA WRITE
+    </A></TH>
+<TH bgcolor=white><A href="Directory_Event_Memory_Data.html" target="Status" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_Event_Memory_Data.html') {
+        parent.frames[1].location='Directory_Event_Memory_Data.html'
+    }">
+    Memory Data
+    </A></TH>
+<TH bgcolor=white><A href="Directory_Event_Memory_Ack.html" target="Status" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_Event_Memory_Ack.html') {
+        parent.frames[1].location='Directory_Event_Memory_Ack.html'
+    }">
+    Memory Ack
+    </A></TH>
+</TR>
+<TR>
+  <TH bgcolor=white><A href="Directory_table_I.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_I.html') {
+        parent.frames[1].location='Directory_State_I.html'
+    }">
+    I
+    </A></TH>
+<TD bgcolor=white>
+  <A href="Directory_action_qf_queueMemoryFetchRequest.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_qf_queueMemoryFetchRequest.html') {
+          parent.frames[1].location='Directory_action_qf_queueMemoryFetchRequest.html'
+      }">
+      qf
+      </A>
+  <A href="Directory_action_e_ownerIsRequestor.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_e_ownerIsRequestor.html') {
+          parent.frames[1].location='Directory_action_e_ownerIsRequestor.html'
+      }">
+      e
+      </A>
+  <A href="Directory_action_i_popIncomingRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_i_popIncomingRequestQueue.html') {
+          parent.frames[1].location='Directory_action_i_popIncomingRequestQueue.html'
+      }">
+      i
+      </A>
+/
+<A href="Directory_table_IM.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_IM.html') {
+        parent.frames[1].location='Directory_State_IM.html'
+    }">
+    IM
+    </A>
+</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_b_sendWriteBackNack.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_b_sendWriteBackNack.html') {
+          parent.frames[1].location='Directory_action_b_sendWriteBackNack.html'
+      }">
+      b
+      </A>
+  <A href="Directory_action_i_popIncomingRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_i_popIncomingRequestQueue.html') {
+          parent.frames[1].location='Directory_action_i_popIncomingRequestQueue.html'
+      }">
+      i
+      </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_r_allocateTbeForDmaRead.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_r_allocateTbeForDmaRead.html') {
+          parent.frames[1].location='Directory_action_r_allocateTbeForDmaRead.html'
+      }">
+      <B><FONT size=+1>r</FONT></B>
+      </A>
+  <A href="Directory_action_qf_queueMemoryFetchRequestDMA.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_qf_queueMemoryFetchRequestDMA.html') {
+          parent.frames[1].location='Directory_action_qf_queueMemoryFetchRequestDMA.html'
+      }">
+      qfd
+      </A>
+  <A href="Directory_action_p_popIncomingDMARequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_p_popIncomingDMARequestQueue.html') {
+          parent.frames[1].location='Directory_action_p_popIncomingDMARequestQueue.html'
+      }">
+      p
+      </A>
+/
+<A href="Directory_table_ID.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_ID.html') {
+        parent.frames[1].location='Directory_State_ID.html'
+    }">
+    ID
+    </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_v_allocateTBE.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_v_allocateTBE.html') {
+          parent.frames[1].location='Directory_action_v_allocateTBE.html'
+      }">
+      v
+      </A>
+  <A href="Directory_action_qw_queueMemoryWBRequest_partial.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_qw_queueMemoryWBRequest_partial.html') {
+          parent.frames[1].location='Directory_action_qw_queueMemoryWBRequest_partial.html'
+      }">
+      qwp
+      </A>
+  <A href="Directory_action_p_popIncomingDMARequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_p_popIncomingDMARequestQueue.html') {
+          parent.frames[1].location='Directory_action_p_popIncomingDMARequestQueue.html'
+      }">
+      p
+      </A>
+/
+<A href="Directory_table_ID_W.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_ID_W.html') {
+        parent.frames[1].location='Directory_State_ID_W.html'
+    }">
+    ID W
+    </A>
+</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+  <TH bgcolor=white><A href="Directory_table_I.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_I.html') {
+        parent.frames[1].location='Directory_State_I.html'
+    }">
+    I
+    </A></TH>
+</TR>
+<TR>
+  <TH bgcolor=white><A href="Directory_table_M.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_M.html') {
+        parent.frames[1].location='Directory_State_M.html'
+    }">
+    M
+    </A></TH>
+<TD bgcolor=white>
+  <A href="Directory_action_f_forwardRequest.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_f_forwardRequest.html') {
+          parent.frames[1].location='Directory_action_f_forwardRequest.html'
+      }">
+      f
+      </A>
+  <A href="Directory_action_e_ownerIsRequestor.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_e_ownerIsRequestor.html') {
+          parent.frames[1].location='Directory_action_e_ownerIsRequestor.html'
+      }">
+      e
+      </A>
+  <A href="Directory_action_i_popIncomingRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_i_popIncomingRequestQueue.html') {
+          parent.frames[1].location='Directory_action_i_popIncomingRequestQueue.html'
+      }">
+      i
+      </A>
+</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=aqua>
+  <A href="Directory_action_c_clearOwner.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_c_clearOwner.html') {
+          parent.frames[1].location='Directory_action_c_clearOwner.html'
+      }">
+      c
+      </A>
+  <A href="Directory_action_v_allocateTBEFromRequestNet.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_v_allocateTBEFromRequestNet.html') {
+          parent.frames[1].location='Directory_action_v_allocateTBEFromRequestNet.html'
+      }">
+      <B><FONT size=+1>v</FONT></B>
+      </A>
+  <A href="Directory_action_l_queueMemoryWBRequest.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_l_queueMemoryWBRequest.html') {
+          parent.frames[1].location='Directory_action_l_queueMemoryWBRequest.html'
+      }">
+      lq
+      </A>
+  <A href="Directory_action_i_popIncomingRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_i_popIncomingRequestQueue.html') {
+          parent.frames[1].location='Directory_action_i_popIncomingRequestQueue.html'
+      }">
+      i
+      </A>
+/
+<A href="Directory_table_MI.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_MI.html') {
+        parent.frames[1].location='Directory_State_MI.html'
+    }">
+    MI
+    </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_b_sendWriteBackNack.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_b_sendWriteBackNack.html') {
+          parent.frames[1].location='Directory_action_b_sendWriteBackNack.html'
+      }">
+      b
+      </A>
+  <A href="Directory_action_i_popIncomingRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_i_popIncomingRequestQueue.html') {
+          parent.frames[1].location='Directory_action_i_popIncomingRequestQueue.html'
+      }">
+      i
+      </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_v_allocateTBE.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_v_allocateTBE.html') {
+          parent.frames[1].location='Directory_action_v_allocateTBE.html'
+      }">
+      v
+      </A>
+  <A href="Directory_action_inv_sendCacheInvalidate.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_inv_sendCacheInvalidate.html') {
+          parent.frames[1].location='Directory_action_inv_sendCacheInvalidate.html'
+      }">
+      inv
+      </A>
+  <A href="Directory_action_p_popIncomingDMARequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_p_popIncomingDMARequestQueue.html') {
+          parent.frames[1].location='Directory_action_p_popIncomingDMARequestQueue.html'
+      }">
+      p
+      </A>
+/
+<A href="Directory_table_M_DRD.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_M_DRD.html') {
+        parent.frames[1].location='Directory_State_M_DRD.html'
+    }">
+    M DRD
+    </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_v_allocateTBE.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_v_allocateTBE.html') {
+          parent.frames[1].location='Directory_action_v_allocateTBE.html'
+      }">
+      v
+      </A>
+  <A href="Directory_action_inv_sendCacheInvalidate.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_inv_sendCacheInvalidate.html') {
+          parent.frames[1].location='Directory_action_inv_sendCacheInvalidate.html'
+      }">
+      inv
+      </A>
+  <A href="Directory_action_p_popIncomingDMARequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_p_popIncomingDMARequestQueue.html') {
+          parent.frames[1].location='Directory_action_p_popIncomingDMARequestQueue.html'
+      }">
+      p
+      </A>
+/
+<A href="Directory_table_M_DWR.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_M_DWR.html') {
+        parent.frames[1].location='Directory_State_M_DWR.html'
+    }">
+    M DWR
+    </A>
+</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+  <TH bgcolor=white><A href="Directory_table_M.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_M.html') {
+        parent.frames[1].location='Directory_State_M.html'
+    }">
+    M
+    </A></TH>
+</TR>
+<TR>
+  <TH bgcolor=white><A href="Directory_table_M_DRD.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_M_DRD.html') {
+        parent.frames[1].location='Directory_State_M_DRD.html'
+    }">
+    M DRD
+    </A></TH>
+<TD bgcolor=white>
+  <A href="Directory_action_z_recycleRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_z_recycleRequestQueue.html') {
+          parent.frames[1].location='Directory_action_z_recycleRequestQueue.html'
+      }">
+      z
+      </A>
+</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_drp_sendDMAData.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_drp_sendDMAData.html') {
+          parent.frames[1].location='Directory_action_drp_sendDMAData.html'
+      }">
+      drp
+      </A>
+  <A href="Directory_action_c_clearOwner.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_c_clearOwner.html') {
+          parent.frames[1].location='Directory_action_c_clearOwner.html'
+      }">
+      c
+      </A>
+  <A href="Directory_action_l_queueMemoryWBRequest.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_l_queueMemoryWBRequest.html') {
+          parent.frames[1].location='Directory_action_l_queueMemoryWBRequest.html'
+      }">
+      lq
+      </A>
+  <A href="Directory_action_i_popIncomingRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_i_popIncomingRequestQueue.html') {
+          parent.frames[1].location='Directory_action_i_popIncomingRequestQueue.html'
+      }">
+      i
+      </A>
+/
+<A href="Directory_table_M_DRDI.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_M_DRDI.html') {
+        parent.frames[1].location='Directory_State_M_DRDI.html'
+    }">
+    M DRDI
+    </A>
+</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+  <TH bgcolor=white><A href="Directory_table_M_DRD.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_M_DRD.html') {
+        parent.frames[1].location='Directory_State_M_DRD.html'
+    }">
+    M DRD
+    </A></TH>
+</TR>
+<TR>
+  <TH bgcolor=white><A href="Directory_table_M_DWR.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_M_DWR.html') {
+        parent.frames[1].location='Directory_State_M_DWR.html'
+    }">
+    M DWR
+    </A></TH>
+<TD bgcolor=white>
+  <A href="Directory_action_z_recycleRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_z_recycleRequestQueue.html') {
+          parent.frames[1].location='Directory_action_z_recycleRequestQueue.html'
+      }">
+      z
+      </A>
+</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_qw_queueMemoryWBRequest_partialTBE.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_qw_queueMemoryWBRequest_partialTBE.html') {
+          parent.frames[1].location='Directory_action_qw_queueMemoryWBRequest_partialTBE.html'
+      }">
+      qwt
+      </A>
+  <A href="Directory_action_c_clearOwner.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_c_clearOwner.html') {
+          parent.frames[1].location='Directory_action_c_clearOwner.html'
+      }">
+      c
+      </A>
+  <A href="Directory_action_i_popIncomingRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_i_popIncomingRequestQueue.html') {
+          parent.frames[1].location='Directory_action_i_popIncomingRequestQueue.html'
+      }">
+      i
+      </A>
+/
+<A href="Directory_table_M_DWRI.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_M_DWRI.html') {
+        parent.frames[1].location='Directory_State_M_DWRI.html'
+    }">
+    M DWRI
+    </A>
+</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+  <TH bgcolor=white><A href="Directory_table_M_DWR.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_M_DWR.html') {
+        parent.frames[1].location='Directory_State_M_DWR.html'
+    }">
+    M DWR
+    </A></TH>
+</TR>
+<TR>
+  <TH bgcolor=white><A href="Directory_table_M_DWRI.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_M_DWRI.html') {
+        parent.frames[1].location='Directory_State_M_DWRI.html'
+    }">
+    M DWRI
+    </A></TH>
+<TD bgcolor=white>
+  <A href="Directory_action_z_recycleRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_z_recycleRequestQueue.html') {
+          parent.frames[1].location='Directory_action_z_recycleRequestQueue.html'
+      }">
+      z
+      </A>
+</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_l_sendWriteBackAck.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_l_sendWriteBackAck.html') {
+          parent.frames[1].location='Directory_action_l_sendWriteBackAck.html'
+      }">
+      la
+      </A>
+  <A href="Directory_action_da_sendDMAAck.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_da_sendDMAAck.html') {
+          parent.frames[1].location='Directory_action_da_sendDMAAck.html'
+      }">
+      da
+      </A>
+  <A href="Directory_action_w_deallocateTBE.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_w_deallocateTBE.html') {
+          parent.frames[1].location='Directory_action_w_deallocateTBE.html'
+      }">
+      w
+      </A>
+  <A href="Directory_action_l_popMemQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_l_popMemQueue.html') {
+          parent.frames[1].location='Directory_action_l_popMemQueue.html'
+      }">
+      q
+      </A>
+/
+<A href="Directory_table_I.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_I.html') {
+        parent.frames[1].location='Directory_State_I.html'
+    }">
+    I
+    </A>
+</TD>
+  <TH bgcolor=white><A href="Directory_table_M_DWRI.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_M_DWRI.html') {
+        parent.frames[1].location='Directory_State_M_DWRI.html'
+    }">
+    M DWRI
+    </A></TH>
+</TR>
+<TR>
+  <TH bgcolor=white><A href="Directory_table_M_DRDI.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_M_DRDI.html') {
+        parent.frames[1].location='Directory_State_M_DRDI.html'
+    }">
+    M DRDI
+    </A></TH>
+<TD bgcolor=white>
+  <A href="Directory_action_z_recycleRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_z_recycleRequestQueue.html') {
+          parent.frames[1].location='Directory_action_z_recycleRequestQueue.html'
+      }">
+      z
+      </A>
+</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_l_sendWriteBackAck.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_l_sendWriteBackAck.html') {
+          parent.frames[1].location='Directory_action_l_sendWriteBackAck.html'
+      }">
+      la
+      </A>
+  <A href="Directory_action_w_deallocateTBE.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_w_deallocateTBE.html') {
+          parent.frames[1].location='Directory_action_w_deallocateTBE.html'
+      }">
+      w
+      </A>
+  <A href="Directory_action_l_popMemQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_l_popMemQueue.html') {
+          parent.frames[1].location='Directory_action_l_popMemQueue.html'
+      }">
+      q
+      </A>
+/
+<A href="Directory_table_I.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_I.html') {
+        parent.frames[1].location='Directory_State_I.html'
+    }">
+    I
+    </A>
+</TD>
+  <TH bgcolor=white><A href="Directory_table_M_DRDI.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_M_DRDI.html') {
+        parent.frames[1].location='Directory_State_M_DRDI.html'
+    }">
+    M DRDI
+    </A></TH>
+</TR>
+<TR>
+  <TH bgcolor=white><A href="Directory_table_IM.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_IM.html') {
+        parent.frames[1].location='Directory_State_IM.html'
+    }">
+    IM
+    </A></TH>
+<TD bgcolor=white>
+  <A href="Directory_action_z_recycleRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_z_recycleRequestQueue.html') {
+          parent.frames[1].location='Directory_action_z_recycleRequestQueue.html'
+      }">
+      z
+      </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_z_recycleRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_z_recycleRequestQueue.html') {
+          parent.frames[1].location='Directory_action_z_recycleRequestQueue.html'
+      }">
+      z
+      </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_z_recycleRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_z_recycleRequestQueue.html') {
+          parent.frames[1].location='Directory_action_z_recycleRequestQueue.html'
+      }">
+      z
+      </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_z_recycleRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_z_recycleRequestQueue.html') {
+          parent.frames[1].location='Directory_action_z_recycleRequestQueue.html'
+      }">
+      z
+      </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_y_recycleDMARequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_y_recycleDMARequestQueue.html') {
+          parent.frames[1].location='Directory_action_y_recycleDMARequestQueue.html'
+      }">
+      y
+      </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_y_recycleDMARequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_y_recycleDMARequestQueue.html') {
+          parent.frames[1].location='Directory_action_y_recycleDMARequestQueue.html'
+      }">
+      y
+      </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_d_sendData.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_d_sendData.html') {
+          parent.frames[1].location='Directory_action_d_sendData.html'
+      }">
+      d
+      </A>
+  <A href="Directory_action_l_popMemQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_l_popMemQueue.html') {
+          parent.frames[1].location='Directory_action_l_popMemQueue.html'
+      }">
+      q
+      </A>
+/
+<A href="Directory_table_M.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_M.html') {
+        parent.frames[1].location='Directory_State_M.html'
+    }">
+    M
+    </A>
+</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+  <TH bgcolor=white><A href="Directory_table_IM.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_IM.html') {
+        parent.frames[1].location='Directory_State_IM.html'
+    }">
+    IM
+    </A></TH>
+</TR>
+<TR>
+  <TH bgcolor=yellow><A href="Directory_table_MI.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_MI.html') {
+        parent.frames[1].location='Directory_State_MI.html'
+    }">
+    MI
+    </A></TH>
+<TD bgcolor=aqua>
+  <A href="Directory_action_z_recycleRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_z_recycleRequestQueue.html') {
+          parent.frames[1].location='Directory_action_z_recycleRequestQueue.html'
+      }">
+      z
+      </A>
+</TD>
+<TD bgcolor=aqua>
+  <A href="Directory_action_z_recycleRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_z_recycleRequestQueue.html') {
+          parent.frames[1].location='Directory_action_z_recycleRequestQueue.html'
+      }">
+      z
+      </A>
+</TD>
+<TD bgcolor=aqua>
+  <A href="Directory_action_z_recycleRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_z_recycleRequestQueue.html') {
+          parent.frames[1].location='Directory_action_z_recycleRequestQueue.html'
+      }">
+      z
+      </A>
+</TD>
+<TD bgcolor=aqua>
+  <A href="Directory_action_z_recycleRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_z_recycleRequestQueue.html') {
+          parent.frames[1].location='Directory_action_z_recycleRequestQueue.html'
+      }">
+      z
+      </A>
+</TD>
+<TD bgcolor=aqua>
+  <A href="Directory_action_y_recycleDMARequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_y_recycleDMARequestQueue.html') {
+          parent.frames[1].location='Directory_action_y_recycleDMARequestQueue.html'
+      }">
+      y
+      </A>
+</TD>
+<TD bgcolor=aqua>
+  <A href="Directory_action_y_recycleDMARequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_y_recycleDMARequestQueue.html') {
+          parent.frames[1].location='Directory_action_y_recycleDMARequestQueue.html'
+      }">
+      y
+      </A>
+</TD>
+<TD bgcolor=#C0C000>&nbsp;</TD>
+<TD bgcolor=yellow>
+  <A href="Directory_action_l_sendWriteBackAck.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_l_sendWriteBackAck.html') {
+          parent.frames[1].location='Directory_action_l_sendWriteBackAck.html'
+      }">
+      la
+      </A>
+  <A href="Directory_action_w_deallocateTBE.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_w_deallocateTBE.html') {
+          parent.frames[1].location='Directory_action_w_deallocateTBE.html'
+      }">
+      w
+      </A>
+  <A href="Directory_action_l_popMemQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_l_popMemQueue.html') {
+          parent.frames[1].location='Directory_action_l_popMemQueue.html'
+      }">
+      q
+      </A>
+/
+<A href="Directory_table_I.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_I.html') {
+        parent.frames[1].location='Directory_State_I.html'
+    }">
+    I
+    </A>
+</TD>
+  <TH bgcolor=yellow><A href="Directory_table_MI.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_MI.html') {
+        parent.frames[1].location='Directory_State_MI.html'
+    }">
+    MI
+    </A></TH>
+</TR>
+<TR>
+  <TH bgcolor=white><A href="Directory_table_ID.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_ID.html') {
+        parent.frames[1].location='Directory_State_ID.html'
+    }">
+    ID
+    </A></TH>
+<TD bgcolor=white>
+  <A href="Directory_action_z_recycleRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_z_recycleRequestQueue.html') {
+          parent.frames[1].location='Directory_action_z_recycleRequestQueue.html'
+      }">
+      z
+      </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_z_recycleRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_z_recycleRequestQueue.html') {
+          parent.frames[1].location='Directory_action_z_recycleRequestQueue.html'
+      }">
+      z
+      </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_z_recycleRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_z_recycleRequestQueue.html') {
+          parent.frames[1].location='Directory_action_z_recycleRequestQueue.html'
+      }">
+      z
+      </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_z_recycleRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_z_recycleRequestQueue.html') {
+          parent.frames[1].location='Directory_action_z_recycleRequestQueue.html'
+      }">
+      z
+      </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_y_recycleDMARequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_y_recycleDMARequestQueue.html') {
+          parent.frames[1].location='Directory_action_y_recycleDMARequestQueue.html'
+      }">
+      y
+      </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_y_recycleDMARequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_y_recycleDMARequestQueue.html') {
+          parent.frames[1].location='Directory_action_y_recycleDMARequestQueue.html'
+      }">
+      y
+      </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_dr_sendDMAData.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_dr_sendDMAData.html') {
+          parent.frames[1].location='Directory_action_dr_sendDMAData.html'
+      }">
+      dr
+      </A>
+  <A href="Directory_action_w_deallocateTBE.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_w_deallocateTBE.html') {
+          parent.frames[1].location='Directory_action_w_deallocateTBE.html'
+      }">
+      w
+      </A>
+  <A href="Directory_action_l_popMemQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_l_popMemQueue.html') {
+          parent.frames[1].location='Directory_action_l_popMemQueue.html'
+      }">
+      q
+      </A>
+/
+<A href="Directory_table_I.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_I.html') {
+        parent.frames[1].location='Directory_State_I.html'
+    }">
+    I
+    </A>
+</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+  <TH bgcolor=white><A href="Directory_table_ID.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_ID.html') {
+        parent.frames[1].location='Directory_State_ID.html'
+    }">
+    ID
+    </A></TH>
+</TR>
+<TR>
+  <TH bgcolor=white><A href="Directory_table_ID_W.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_ID_W.html') {
+        parent.frames[1].location='Directory_State_ID_W.html'
+    }">
+    ID W
+    </A></TH>
+<TD bgcolor=white>
+  <A href="Directory_action_z_recycleRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_z_recycleRequestQueue.html') {
+          parent.frames[1].location='Directory_action_z_recycleRequestQueue.html'
+      }">
+      z
+      </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_z_recycleRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_z_recycleRequestQueue.html') {
+          parent.frames[1].location='Directory_action_z_recycleRequestQueue.html'
+      }">
+      z
+      </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_z_recycleRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_z_recycleRequestQueue.html') {
+          parent.frames[1].location='Directory_action_z_recycleRequestQueue.html'
+      }">
+      z
+      </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_z_recycleRequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_z_recycleRequestQueue.html') {
+          parent.frames[1].location='Directory_action_z_recycleRequestQueue.html'
+      }">
+      z
+      </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_y_recycleDMARequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_y_recycleDMARequestQueue.html') {
+          parent.frames[1].location='Directory_action_y_recycleDMARequestQueue.html'
+      }">
+      y
+      </A>
+</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_y_recycleDMARequestQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_y_recycleDMARequestQueue.html') {
+          parent.frames[1].location='Directory_action_y_recycleDMARequestQueue.html'
+      }">
+      y
+      </A>
+</TD>
+<TD bgcolor=lightgrey>&nbsp;</TD>
+<TD bgcolor=white>
+  <A href="Directory_action_da_sendDMAAck.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_da_sendDMAAck.html') {
+          parent.frames[1].location='Directory_action_da_sendDMAAck.html'
+      }">
+      da
+      </A>
+  <A href="Directory_action_w_deallocateTBE.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_w_deallocateTBE.html') {
+          parent.frames[1].location='Directory_action_w_deallocateTBE.html'
+      }">
+      w
+      </A>
+  <A href="Directory_action_l_popMemQueue.html" target="Status" onmouseover="
+      if (parent.frames[1].location != parent.location + 'Directory_action_l_popMemQueue.html') {
+          parent.frames[1].location='Directory_action_l_popMemQueue.html'
+      }">
+      q
+      </A>
+/
+<A href="Directory_table_I.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_I.html') {
+        parent.frames[1].location='Directory_State_I.html'
+    }">
+    I
+    </A>
+</TD>
+  <TH bgcolor=white><A href="Directory_table_ID_W.html" target="Table" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_State_ID_W.html') {
+        parent.frames[1].location='Directory_State_ID_W.html'
+    }">
+    ID W
+    </A></TH>
+</TR>
+<!- Column footer->
+<TR>
+  <TH> </TH>
+<TH bgcolor=white><A href="Directory_Event_GETX.html" target="Status" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_Event_GETX.html') {
+        parent.frames[1].location='Directory_Event_GETX.html'
+    }">
+    GETX
+    </A></TH>
+<TH bgcolor=white><A href="Directory_Event_GETS.html" target="Status" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_Event_GETS.html') {
+        parent.frames[1].location='Directory_Event_GETS.html'
+    }">
+    GETS
+    </A></TH>
+<TH bgcolor=white><A href="Directory_Event_PUTX.html" target="Status" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_Event_PUTX.html') {
+        parent.frames[1].location='Directory_Event_PUTX.html'
+    }">
+    PUTX
+    </A></TH>
+<TH bgcolor=white><A href="Directory_Event_PUTX_NotOwner.html" target="Status" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_Event_PUTX_NotOwner.html') {
+        parent.frames[1].location='Directory_Event_PUTX_NotOwner.html'
+    }">
+    PUTX NotOwner
+    </A></TH>
+<TH bgcolor=white><A href="Directory_Event_DMA_READ.html" target="Status" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_Event_DMA_READ.html') {
+        parent.frames[1].location='Directory_Event_DMA_READ.html'
+    }">
+    DMA READ
+    </A></TH>
+<TH bgcolor=white><A href="Directory_Event_DMA_WRITE.html" target="Status" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_Event_DMA_WRITE.html') {
+        parent.frames[1].location='Directory_Event_DMA_WRITE.html'
+    }">
+    DMA WRITE
+    </A></TH>
+<TH bgcolor=white><A href="Directory_Event_Memory_Data.html" target="Status" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_Event_Memory_Data.html') {
+        parent.frames[1].location='Directory_Event_Memory_Data.html'
+    }">
+    Memory Data
+    </A></TH>
+<TH bgcolor=white><A href="Directory_Event_Memory_Ack.html" target="Status" onmouseover="
+    if (parent.frames[1].location != parent.location + 'Directory_Event_Memory_Ack.html') {
+        parent.frames[1].location='Directory_Event_Memory_Ack.html'
+    }">
+    Memory Ack
+    </A></TH>
+</TR>
+</TABLE>
+</BODY></HTML>
