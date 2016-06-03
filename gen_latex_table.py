@@ -4,20 +4,57 @@ import glob
 import re
 from HTMLParser import HTMLParser
 
+def split_array(arr, size):
+     arrs = []
+     while len(arr) > size:
+         pice = arr[:size]
+         arrs.append(pice)
+         arr   = arr[size:]
+     arrs.append(arr)
+     return arrs
+
 def cleanhtml(raw_html):
     cleanr =re.compile('<.*?>')
     cleantext = re.sub(cleanr,'', raw_html)
     return cleantext
 
-def print_table(newfilename, protocol, controller, type, table):
+def print_portrait_table(newfilename, protocol, controller, type, table):
     file = open(newfilename, "w")
     num_colums = len(table[0])
     
-    file.write("\\begin{tabular}{" + ("|l"*num_colums) +"|} \n\hline\n")
+    file.write("\\begin{table}\n\\centering\n\\begin{tabular}{" + ("|l"*num_colums) +"|} \n\hline\n")
     for line in table:
         file.write((" & ".join(line)) + " \\\\ \n\hline\n")
     
-    file.write("\\end{tabular}")
+    file.write("\\end{tabular}\n\\caption{"+ protocol.replace("_", "\\_") + " - " + controller + " - " + type + "}\n")
+    file.write("\\end{table}")
+    file.close()
+
+def print_landscape_table(newfilename, protocol, controller, type, table):
+    file = open(newfilename, "w")
+    num_colums = len(table[0])
+    n = 200/int(num_colums)
+    print n
+    
+    blocks = split_array(table[1:], 20)
+    num_blocks = len(blocks)
+    index = 0
+    for block in blocks:
+        index += 1
+        title_line = table[0][:]
+        file.write("\\begin{sidewaystable}\n\\centering\n\\begin{adjustbox}{max width=\\textwidth}\n\\begin{tabular}{" + ("|l"*num_colums) +"|} \n\hline\n")
+        for line in ([title_line] + block):
+            for k in range(0, len(line)):
+                entry = line[k]
+                split_entry = [entry[i * n:i * n+n] for i,blah in enumerate(entry[::n])]
+                if not entry.startswith("\\cellcolor[gray]{0.8}"):
+                    line[k] = "\\makecell[l]{" + "\\\\".join(split_entry) + "}"
+            file.write((" & ".join(line)) + " \\\\ \n\hline\n")
+
+        file.write("\\end{tabular}\n\\end{adjustbox}\n")
+        file.write("\\caption{" + protocol.replace("_", "\\_") + " - " + controller + " - " + type + ("" if num_blocks==1 else ("- part " + str(index) + "/" + str(num_blocks))) + "}\n")
+        file.write("\\end{sidewaystable}\n")
+        
     file.close()
 
 class MyHTMLParser(HTMLParser):
@@ -30,7 +67,7 @@ class MyHTMLParser(HTMLParser):
     def handle_starttag(self, tag, attrs):
         if tag in ['td', 'th']:
             if ("bgcolor", "lightgrey") in attrs:
-                self.data = "\cellcolor{gray}{0.8}"
+                self.data = "\cellcolor[gray]{0.8}"
             else:
                 self.data = ""
         elif tag=='tr':
@@ -63,7 +100,7 @@ def make_table(protocol, controller, type):
         table.append([col0, col05, col1] if type=="action" else [col0, col1])
         file.close()
     
-    print_table(newfilename, protocol, controller, type, table)
+    print_portrait_table(newfilename, protocol, controller, type, table)
 
 def convert_table(protocol, controller):
     file = open(protocol + "/" + controller + "_table.html", 'r')
@@ -75,7 +112,7 @@ def convert_table(protocol, controller):
         table[i] = table[i][0:len(table[i])-1]
     table = table[0:len(table)-1]
     
-    print_table("out/" + protocol + "/"+controller+"_table.tex", protocol, controller, "table", table)    
+    print_landscape_table("out/" + protocol + "/"+controller+"_table.tex", protocol, controller, "table", table)    
 
 dirs = [x[1] for x in os.walk('.')][0]
 dirs = [x for x in dirs if not x.startswith('.')]
@@ -96,4 +133,5 @@ for protocol in dirs:
             make_table(protocol, controller, "action")
             make_table(protocol, controller, "Event")
             convert_table(protocol, controller)
-            
+    
+    # Now generate one common file    
