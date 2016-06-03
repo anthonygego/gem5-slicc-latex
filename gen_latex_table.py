@@ -22,20 +22,18 @@ def print_portrait_table(newfilename, protocol, controller, type, table):
     file = open(newfilename, "w")
     num_colums = len(table[0])
     
-    file.write("\\begin{table}\n\\centering\n\\begin{tabular}{" + ("|l"*num_colums) +"|} \n\hline\n")
+    file.write("\\begin{table}\n\\centering\n\\begin{adjustbox}{max width=\\textwidth}\n\\begin{tabular}{" + ("|l"*num_colums) +"|} \n\hline\n")
     for line in table:
         file.write((" & ".join(line)) + " \\\\ \n\hline\n")
     
-    file.write("\\end{tabular}\n\\caption{"+ protocol.replace("_", "\\_") + " - " + controller + " - " + type + "}\n")
+    file.write("\\end{tabular}\n\\end{adjustbox}\n\\caption{"+ protocol.replace("_", "\\_") + " - " + controller + " - " + type + "}\n")
     file.write("\\end{table}")
     file.close()
 
 def print_landscape_table(newfilename, protocol, controller, type, table):
     file = open(newfilename, "w")
     num_colums = len(table[0])
-    n = 200/int(num_colums)
-    print n
-    
+    n = 200/int(num_colums) # max chars per cell
     blocks = split_array(table[1:], 20)
     num_blocks = len(blocks)
     index = 0
@@ -101,6 +99,7 @@ def make_table(protocol, controller, type):
         file.close()
     
     print_portrait_table(newfilename, protocol, controller, type, table)
+    return protocol + "/"+controller+"_"+type+".tex"
 
 def convert_table(protocol, controller):
     file = open(protocol + "/" + controller + "_table.html", 'r')
@@ -112,7 +111,9 @@ def convert_table(protocol, controller):
         table[i] = table[i][0:len(table[i])-1]
     table = table[0:len(table)-1]
     
-    print_landscape_table("out/" + protocol + "/"+controller+"_table.tex", protocol, controller, "table", table)    
+    newfilename = "out/" + protocol + "/"+controller+"_table.tex"
+    print_landscape_table(newfilename, protocol, controller, "table", table) 
+    return protocol + "/"+controller+"_table.tex"
 
 dirs = [x[1] for x in os.walk('.')][0]
 dirs = [x for x in dirs if not x.startswith('.')]
@@ -121,17 +122,43 @@ dirs = [x for x in dirs if not x=="out"]
 if not os.path.isdir("out"):
     os.makedirs("out")
 
+
+file = open("out/main.tex", "w")
+file.write('''\documentclass[11pt,a4paper]{report}\n
+\\usepackage[utf8]{inputenc}
+\\usepackage[english]{babel}
+\\usepackage{amsmath}
+\\usepackage{amsfonts}
+\\usepackage{amssymb}
+\\usepackage{graphicx}
+\\usepackage{lmodern}
+\\usepackage{tabularx}
+\\usepackage[table]{xcolor}
+\\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\\usepackage{makecell}
+\\usepackage{rotating}
+\\usepackage{adjustbox}
+\\begin{document}\n''')    
+    
 for protocol in dirs:
     print "- Parsing files for protocol " + protocol
     if not os.path.isdir("out/"+protocol):
         os.makedirs("out/"+protocol)
+    file.write("\\chapter{"+ protocol.replace("_", "\\_") +"}")
     for controller in ["Directory", "DMA", "L0Cache", "L1Cache", "L2Cache"]:
         file_list = glob.glob(protocol + "/" + controller + "*")
         if len(file_list) != 0:
             print "---> Parsing "+ controller + " files"
-            make_table(protocol, controller, "State")
-            make_table(protocol, controller, "action")
-            make_table(protocol, controller, "Event")
-            convert_table(protocol, controller)
+            filename = make_table(protocol, controller, "State")
+            file.write("\\input{"+ filename + "}")
+            filename = make_table(protocol, controller, "action")
+            file.write("\\input{"+ filename + "}")
+            filename = make_table(protocol, controller, "Event")
+            file.write("\\input{"+ filename + "}")
+            filename = convert_table(protocol, controller)
+            file.write("\\input{"+ filename + "}")
     
-    # Now generate one common file    
+
+file.write("\\end{document}")
+file.close()
+# Now generate one common file    
