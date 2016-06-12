@@ -138,7 +138,10 @@ file.write('''\documentclass[11pt,a4paper]{report}\n
 \\usepackage{makecell}
 \\usepackage{rotating}
 \\usepackage{adjustbox}
-\\begin{document}\n''')    
+\\title{Protocol(s) documentation}
+\\begin{document}
+\\maketitle
+\\listoftables\n''')
     
 for protocol in dirs:
     print "- Parsing files for protocol " + protocol
